@@ -1,0 +1,70 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits"
+  ],
+  "timezone": "Asia/Shanghai",
+  "schedule": [
+    "before 6am on monday"
+  ],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "automerge": false,
+  "dependencyDashboard": {
+    "enabled": true
+  },
+  "enabledManagers": [
+    "npm"
+  ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.vitepress/cache/**",
+    "**/.pnpm-store/**",
+    "externals/**"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "description": "Keep Vite+ and its test and Vite dependencies in one reviewed update.",
+      "matchPackageNames": [
+        "vite-plus",
+        "vite",
+        "@voidzero-dev/vite-plus-core",
+        "vitest",
+        "@vitest/*"
+      ],
+      "groupName": "Vite+ toolchain",
+      "groupSlug": "vite-plus-toolchain"
+    },
+    {
+      "description": "Update Shiki and its Twoslash integrations together.",
+      "matchPackageNames": [
+        "shiki",
+        "@shikijs/*",
+        "twoslash-protocol"
+      ],
+      "groupName": "Shiki and Twoslash",
+      "groupSlug": "shiki-twoslash"
+    },
+    {
+      "description": "Update the package manager declaration and development dependency together.",
+      "matchPackageNames": [
+        "pnpm"
+      ],
+      "groupName": "pnpm",
+      "groupSlug": "pnpm"
+    },
+    {
+      "description": "Update the commit message checker and its shared configuration together.",
+      "matchPackageNames": [
+        "@commitlint/*"
+      ],
+      "groupName": "commitlint",
+      "groupSlug": "commitlint"
+    }
+  ]
+}

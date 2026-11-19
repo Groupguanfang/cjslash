@@ -1,0 +1,17 @@
+node_modules
+dist
+.DS_Store
+target
+coverage
+.vitest
+.pnpm-store
+.vite
+**/.vitepress/cache/
+**/.vitepress/dist/
+.cjslash
+cjslash-cache
+*.tsbuildinfo
+hooks/_
+.env
+.env.*
+!.env.example

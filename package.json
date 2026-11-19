@@ -1,0 +1,45 @@
+{
+  "name": "@cjslash/monorepo",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@12.21.0",
+  "description": "Twoslash-style type-aware code examples for Cangjie, with Shiki and VitePress integrations.",
+  "license": "MIT",
+  "engines": {
+    "node": "^24.11.0 || >=26.0.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^12.21.0"
+    }
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^10.0.0",
+    "@changesets/cli": "^3.0.3",
+    "@cjslash/shiki": "workspace:*",
+    "@cjslash/vitepress": "workspace:*",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@shikijs/twoslash": "^4.6.0",
+    "@shikijs/vitepress-twoslash": "^4.6.0",
+    "@types/node": "^24.0.0",
+    "@typescript/native": "npm:typescript@^7",
+    "@vitest/coverage-v8": "5.1.0",
+    "@vitest/ui": "5.1.0",
+    "@vueuse/core": "^15.0.0",
+    "cjslash": "workspace:*",
+    "eslint": "^10.15.0",
+    "naily-eslint-config": "^0.2.0",
+    "pnpm": "^12.21.0",
+    "shiki": "^4.6.0",
+    "typescript": "^6.0.3",
+    "unocss": "^66.13.0",
+    "unplugin-auto-import": "^21.1.0",
+    "unplugin-vue-components": "^32.1.0",
+    "vite-plus": "^1.7.0",
+    "vitepress": "2.0.0-alpha.21",
+    "vscode-uri": "^3.2.0",
+    "vue": "^3.5.45"
+  }
+}

@@ -1,0 +1,6 @@
+[submodule "externals/twoslash"]
+	path = externals/twoslash
+	url = https://github.com/twoslashes/twoslash.git
+[submodule "externals/vscode-cangjie"]
+	path = externals/vscode-cangjie
+	url = https://github.com/cangjielanguage/vscode_cangjie.git

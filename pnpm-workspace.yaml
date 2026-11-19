@@ -1,0 +1,16 @@
+minimumReleaseAgeExcludePrune: true
+
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  - tsrs@7.1.0-beta.tsrs2
+
+shellEmulator: true
+
+packages:
+  - packages/*
+
+overrides:
+  vite@*: npm:@voidzero-dev/vite-plus-core@8.3.8000
+
+allowBuilds:
+  pnpm: true

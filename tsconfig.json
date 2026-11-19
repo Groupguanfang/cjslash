@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "paths": {
+      "@cjslash/protocol": ["./packages/cjslash-protocol/src/index.ts"],
+      "@cjslash/shiki": ["./packages/cjslash-shiki/src/index.ts"],
+      "@cjslash/vitepress": ["./packages/cjslash-vitepress/src/index.ts"],
+      "@cjslash/vitepress/client": ["./packages/cjslash-vitepress/src/client.ts"],
+      "cjslash": ["./packages/cjslash/src/index.ts"]
+    },
+    "resolveJsonModule": true,
+    "types": ["vite-plus/test/globals"],
+    "strict": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["**/externals/**/*", "**/dist/**/*"]
+}

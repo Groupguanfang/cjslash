@@ -1,0 +1,49 @@
+{
+  "name": "@cjslash/vitepress",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Cangjie analysis for VitePress",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": {
+        "import": "./dist/index.d.mts",
+        "require": "./dist/index.d.cts"
+      },
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./client": {
+      "types": {
+        "import": "./dist/client.d.mts",
+        "require": "./dist/client.d.cts"
+      },
+      "import": "./dist/client.mjs",
+      "require": "./dist/client.cjs"
+    },
+    "./style.css": "./style.css"
+  },
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist",
+    "style.css"
+  ],
+  "peerDependencies": {
+    "shiki": "^4.6.0",
+    "vitepress": "^2.0.0-alpha.0",
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@cjslash/protocol": "workspace:*",
+    "@cjslash/shiki": "workspace:*",
+    "@shikijs/vitepress-twoslash": "^4.6.0",
+    "cjslash": "workspace:*",
+    "markdown-it": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.2.0",
+    "shiki": "^4.6.0",
+    "vitepress": "2.0.0-alpha.21"
+  }
+}

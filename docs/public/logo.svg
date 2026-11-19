@@ -1,0 +1,46 @@
+<svg
+  width="256"
+  height="256"
+  viewBox="0 0 256 256"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-labelledby="cj-logo-title cj-logo-desc"
+>
+  <title id="cj-logo-title">Cjslash CJ monogram</title>
+  <desc id="cj-logo-desc">
+    A vertically elongated, flat CJ loop with a blue C meeting the green J at its vertical stem and 45-degree lower bend, with a translucent cream stripe cut through the colored band.
+  </desc>
+
+  <defs>
+    <path
+      id="cj-logo-stripe"
+      d="M95 39H195V177L171 201H95L59 165V75L95 39Z"
+      fill="none"
+      stroke-width="6"
+      stroke-linejoin="miter"
+    />
+    <mask id="cj-logo-stripe-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="256" height="256">
+      <rect width="256" height="256" fill="#fff" />
+      <use href="#cj-logo-stripe" stroke="#000" />
+    </mask>
+  </defs>
+
+  <g transform="translate(0 8)">
+    <!-- Closed outer and inner contours -->
+    <path
+      d="M88 24H212V182L178 216H88L44 172V68L88 24ZM102 54H178V172L164 186H102L74 158V82L102 54Z"
+      fill="none"
+      stroke="#061b2f"
+      stroke-width="2.2"
+      stroke-linejoin="miter"
+    />
+
+    <!-- Flat faces -->
+    <g mask="url(#cj-logo-stripe-cutout)">
+      <path d="M178 24H88L44 68V172L88 216H134L164 186H102L74 158V82L102 54H178V24Z" fill="#2d77ee" />
+      <path d="M178 24H212V182L178 216H134L178 172V24Z" fill="#01ec98" />
+    </g>
+    <use href="#cj-logo-stripe" stroke="#f8eccf" stroke-opacity="0.7" />
+  </g>
+</svg>

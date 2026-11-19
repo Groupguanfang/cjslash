@@ -1,0 +1,33 @@
+{
+  "name": "@cjslash/shiki",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Cangjie analysis and syntax highlighting for Shiki",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": {
+        "import": "./dist/index.d.mts",
+        "require": "./dist/index.d.cts"
+      },
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "shiki": "^4.6.0"
+  },
+  "dependencies": {
+    "@cjslash/protocol": "workspace:*",
+    "@shikijs/twoslash": "^4.6.0",
+    "cjslash": "workspace:*"
+  },
+  "devDependencies": {
+    "shiki": "^4.6.0"
+  }
+}

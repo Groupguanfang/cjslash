@@ -1,0 +1,10 @@
+@import '@shikijs/vitepress-twoslash/style.css';
+
+.twoslash-floating.twoslash-completion .twoslash-completion-list {
+  width: max-content;
+  min-width: 240px;
+}
+
+.twoslash-floating.twoslash-completion .twoslash-completion-list li {
+  white-space: nowrap;
+}
