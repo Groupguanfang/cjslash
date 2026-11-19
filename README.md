@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./docs/public/logo.svg" alt="Cjslash logo" width="128" height="128" />
+</p>
+
 # Cjslash
 
 Twoslash-style type-aware code examples for Cangjie, with Shiki and VitePress integrations.
