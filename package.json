@@ -14,6 +14,11 @@
       "version": "^12.21.0"
     }
   },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^10.0.0",
     "@changesets/cli": "^3.0.3",
@@ -21,6 +26,8 @@
     "@cjslash/vitepress": "workspace:*",
     "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
+    "@commitlint/cz-commitlint": "^21.2.4",
+    "@commitlint/types": "^21.2.3",
     "@shikijs/twoslash": "^4.6.0",
     "@shikijs/vitepress-twoslash": "^4.6.0",
     "@types/node": "^24.0.0",
@@ -29,7 +36,10 @@
     "@vitest/ui": "5.1.0",
     "@vueuse/core": "^15.0.0",
     "cjslash": "workspace:*",
+    "commitizen": "^4.3.2",
+    "conventional-changelog-conventionalcommits": "^10.4.1",
     "eslint": "^10.15.0",
+    "inquirer": "^12.11.1",
     "naily-eslint-config": "^0.2.0",
     "pnpm": "^12.21.0",
     "shiki": "^4.6.0",

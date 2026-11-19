@@ -40,6 +40,7 @@ All tasks are defined in the root `vite.config.ts`. Do not add `scripts` to any 
 | Command | Purpose |
 | --- | --- |
 | `vp run setup` | Install or refresh Git hooks |
+| `vp run commit` | Create an emoji-prefixed Conventional Commit with Commitizen |
 | `vp run check` | Run ESLint and both TypeScript checks |
 | `vp run lint` | Check the whole workspace with ESLint |
 | `vp run lint:fix` | Apply ESLint fixes |
@@ -85,46 +86,46 @@ Before submitting a pull request, run `vp run check`, the relevant tests, and an
 
 ## Commit conventions
 
-Commit messages follow Conventional Commits:
+Use `vp run commit` to create commits with Commitizen and the shared commitlint configuration. Commit messages follow Conventional Commits with a leading type emoji:
 
 ```text
-type(scope): description
+emoji type(scope): description
 ```
 
 The scope is optional. Use a short description in English or Chinese. Headers must fit within 100 characters, types must be lowercase, and descriptions must not end with a period.
 
-| Type | Use |
-| --- | --- |
-| `feat` | New functionality |
-| `fix` | Bug fixes |
-| `docs` | Documentation changes |
-| `style` | Formatting without behavior changes |
-| `refactor` | Restructuring without adding features or fixing bugs |
-| `perf` | Performance improvements |
-| `test` | Tests and test fixtures |
-| `build` | Build tooling or dependencies |
-| `ci` | Continuous integration |
-| `chore` | Repository maintenance |
-| `revert` | Reverting a previous change |
+| Type | Emoji | Use |
+| --- | --- | --- |
+| `feat` | ✨ | New functionality |
+| `fix` | 🐛 | Bug fixes |
+| `docs` | 📚 | Documentation changes |
+| `style` | 💄 | Formatting without behavior changes |
+| `refactor` | 🔨 | Restructuring without adding features or fixing bugs |
+| `perf` | 🚀 | Performance improvements |
+| `test` | 🚨 | Tests and test fixtures |
+| `build` | 🛠️ | Build tooling or dependencies |
+| `ci` | ⚙️ | Continuous integration |
+| `chore` | ♻️ | Repository maintenance |
+| `revert` | 🗑️ | Reverting a previous change |
 
 Suggested scopes include `cjslash`, `protocol`, `shiki`, `vitepress`, `docs`, `deps`, and `release`.
 
 ```text
-feat(cjslash): support completion queries
-fix(vitepress): close popups when switching example tabs
-docs: 完善仓颉 SDK 安装说明
-chore(deps): update Shiki dependencies
+✨ feat(cjslash): support completion queries
+🐛 fix(vitepress): close popups when switching example tabs
+📚 docs: 完善仓颉 SDK 安装说明
+♻️ chore(deps): update Shiki dependencies
 ```
 
 For breaking changes, add `!` after the type or scope and describe the migration in a `BREAKING CHANGE:` footer:
 
 ```text
-feat(protocol)!: change the query result format
+✨ feat(protocol)!: change the query result format
 
 BREAKING CHANGE: read query nodes from result.queries.
 ```
 
-The `pre-commit` hook fixes supported staged files with ESLint and runs both TypeScript checks. The `commit-msg` hook validates the message using `@commitlint/config-conventional`. Test suites remain explicit tasks.
+The `pre-commit` hook fixes supported staged files with ESLint and runs both TypeScript checks. The `prepare-commit-msg` hook opens Commitizen for interactive commits without a supplied message. The `commit-msg` hook validates the emoji prefix and Conventional Commits format using the same configuration as Commitizen. Test suites remain explicit tasks.
 
 ## Changesets and pull requests
 
@@ -188,9 +189,9 @@ CJSLASH_SDK_PATH=/path/to/cangjie vp run docs:build
 
 ### 提交与发布说明
 
-提交信息使用 `type(scope): description`。类型使用本页表格列出的英文小写值，scope 可选，说明可以使用中文或英文，标题不超过 100 个字符且不以句点结尾。破坏性变更使用 `!`，并通过 `BREAKING CHANGE:` 说明迁移方式。
+通过 `vp run commit` 使用 Commitizen 创建提交。提交信息使用 `emoji type(scope): description`，各类型对应的表情符号见本页表格。类型使用英文小写值，scope 可选，说明可以使用中文或英文，标题不超过 100 个字符且不以句点结尾。破坏性变更使用 `!`，并通过 `BREAKING CHANGE:` 说明迁移方式。
 
-`pre-commit` 自动修复支持的暂存文件并检查两套 TypeScript 配置；`commit-msg` 使用 commitlint 检查提交规范。测试套件按需显式运行。
+`pre-commit` 自动修复支持的暂存文件并检查两套 TypeScript 配置；`prepare-commit-msg` 在交互式提交且未提供提交信息时启动 Commitizen；`commit-msg` 与 Commitizen 共用配置，校验表情前缀和 Conventional Commits 格式。测试套件按需显式运行。
 
 修改包的公共行为、API 或依赖时，通过 `vp exec changeset` 添加变更说明。仅修改文档或仓库工具时通常不需要 changeset；版本发布由维护者处理。
 

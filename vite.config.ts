@@ -56,6 +56,10 @@ export default defineConfig({
         cache: false,
         command: 'vp hooks enable --hooks-dir hooks',
       },
+      'commit': {
+        cache: false,
+        command: 'git-cz',
+      },
       'lint': {
         cache: false,
         command: 'eslint . --no-warn-ignored',

@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+case "${2-}" in
+  message|merge|squash) exit 0 ;;
+esac
+
+if [ -t 1 ]; then
+  exec < /dev/tty
+  vp exec git-cz --hook --allow-empty
+fi
