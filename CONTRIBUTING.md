@@ -130,6 +130,8 @@ The `pre-commit` hook fixes supported staged files with ESLint and runs both Typ
 
 ## Changesets and pull requests
 
+The `main` branch is protected. Never push directly to `main`. Start every change from an up-to-date `main`, create a dedicated branch, push that branch, and open a pull request. This applies to all changes, including documentation-only edits. Do not force-push a protected branch, and merge only after the required checks and reviews pass.
+
 For changes to published package behavior, APIs, or dependencies, add a changeset:
 
 ```bash
@@ -205,6 +207,8 @@ CJSLASH_SDK_PATH=/path/to/cangjie vp run docs:build
 通过 `vp run commit` 使用 Commitizen 创建提交。提交信息使用 `emoji type(scope): description`，各类型对应的表情符号见本页表格。类型使用英文小写值，scope 可选，说明可以使用中文或英文，标题不超过 100 个字符且不以句点结尾。破坏性变更使用 `!`，并通过 `BREAKING CHANGE:` 说明迁移方式。
 
 `pre-commit` 自动修复支持的暂存文件并检查两套 TypeScript 配置；`prepare-commit-msg` 在交互式提交且未提供提交信息时启动 Commitizen；`commit-msg` 与 Commitizen 共用配置，校验表情前缀和 Conventional Commits 格式。测试套件按需显式运行。
+
+`main` 分支已启用保护策略，禁止直接推送。所有改动（包括纯文档修改）都必须先基于最新的 `main` 创建独立分支，推送到该分支后通过拉取请求合并。不要强制推送受保护分支；只有在必需的检查与评审全部通过后才能合并。
 
 修改包的公共行为、API 或依赖时，通过 `vp exec changeset` 添加变更说明。仅修改文档或仓库工具时通常不需要 changeset；版本发布由维护者处理。
 
