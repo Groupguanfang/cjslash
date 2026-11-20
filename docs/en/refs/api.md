@@ -7,10 +7,10 @@ description: Public APIs for the analyzer, error types, and Shiki and VitePress 
 
 ## `createCjslasher(options)`
 
-Exported from `cjslash`. Accepts [`CjslashOptions`](./options#analyzer-options) and returns `Promise<Cjslash>`:
+Exported from `@cjslash/core`. Accepts [`CjslashOptions`](./options#analyzer-options) and returns `Promise<Cjslash>`:
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const result = await cjslasher.analyze('main() {}')
@@ -43,7 +43,7 @@ Returns `Promise<void>`, cancels running and queued work, and waits for cleanup.
 Per-call execution options accept an `AbortSignal`:
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const abortController = new AbortController()
@@ -61,10 +61,10 @@ Cancellation does not dispose the analyzer; later calls can still run. The rejec
 
 ## `CjslashError` {#errors}
 
-Exported from `cjslash`. Extends `Error` with a stable `code`, optional `cause`, and optional `diagnostics`. Unexpected diagnostic nodes use **original input coordinates**, so authors can locate them in the source.
+Exported from `@cjslash/core`. Extends `Error` with a stable `code`, optional `cause`, and optional `diagnostics`. Unexpected diagnostic nodes use **original input coordinates**, so authors can locate them in the source.
 
 ```ts twoslash
-import { CjslashError, createCjslasher } from 'cjslash'
+import { CjslashError, createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 

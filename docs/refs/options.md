@@ -28,7 +28,7 @@ description: 分析器配置、单次执行选项、Handbook 标记选项与高�
 `cjpmToml` 接收可序列化的 JavaScript 对象，先与默认配置合并，再通过 `confbox` 的 `stringifyTOML` 序列化并写入临时工程的 `cjpm.toml`：
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({
   sdkPath: '/path/to/cangjie',
@@ -45,7 +45,7 @@ await using cjslasher = await createCjslasher({
 
 生成清单的默认版本是 `0.1.0`，`cjc-version` 来自当前 SDK。`package.name` 始终跟随源码顶部包声明的根模块名。`package.src-dir` 默认为 `src`，可以覆盖为工程内的相对目录，不能使用绝对路径或包含 `..`。
 
-`CjpmToml`、`CjpmTomlSection` 和 `CjpmTomlValue` 均从 `cjslash` 导出，可用于配置对象的类型标注。不接受 TOML 字符串；对象结构不合法或无法序列化时抛出 `INVALID_CJPM_TOML`。
+`CjpmToml`、`CjpmTomlSection` 和 `CjpmTomlValue` 均从 `@cjslash/core` 导出，可用于配置对象的类型标注。不接受 TOML 字符串；对象结构不合法或无法序列化时抛出 `INVALID_CJPM_TOML`。
 
 额外配置不会把其他 Markdown 代码块变成当前工程中的文件。同一代码块的多文件示例使用 [`@filename`](./notations#files)，不同代码块仍使用隔离的工程。
 
@@ -93,7 +93,7 @@ await using cjslasher = await createCjslasher({
 例如，对所有示例关闭自动 hover，再对单次分析恢复：
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({
   sdkPath: '/path/to/cangjie',

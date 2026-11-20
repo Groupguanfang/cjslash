@@ -6,7 +6,7 @@
 
 During initial development, security fixes target the `main` branch. After releases are published, fixes target the latest published version of each affected package. Older versions do not have a separate maintenance commitment.
 
-This policy covers `cjslash`, `@cjslash/protocol`, `@cjslash/shiki`, `@cjslash/vitepress`, and this repository's documentation integration.
+This policy covers `@cjslash/core`, `@cjslash/protocol`, `@cjslash/shiki`, `@cjslash/vitepress`, and this repository's documentation integration.
 
 ## Report a vulnerability
 
@@ -40,7 +40,7 @@ Report issues in Cjslash's handling of these boundaries here. Vulnerabilities in
 
 项目初始开发阶段的安全修复针对 `main` 分支。正式发布后，修复针对受影响包的最新发布版本，不承诺单独维护旧版本。
 
-本政策涵盖 `cjslash`、`@cjslash/protocol`、`@cjslash/shiki`、`@cjslash/vitepress` 以及本仓库的文档集成。
+本政策涵盖 `@cjslash/core`、`@cjslash/protocol`、`@cjslash/shiki`、`@cjslash/vitepress` 以及本仓库的文档集成。
 
 ### 报告安全漏洞
 

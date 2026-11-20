@@ -1,9 +1,17 @@
 {
-  "name": "cjslash",
+  "name": "@cjslash/core",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Twoslash-style type queries, completions, and diagnostics for Cangjie",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Groupguanfang/cjslash.git",
+    "directory": "packages/cjslash"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": {

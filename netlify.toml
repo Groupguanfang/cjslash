@@ -1,0 +1,23 @@
+[build]
+command = "git submodule update --init --recursive && pnpm install --frozen-lockfile && pnpm exec vp run docs:build"
+publish = "docs/.vitepress/dist"
+
+[build.environment]
+CI = "true"
+NODE_OPTIONS = "--max-old-space-size=4096"
+NODE_VERSION = "24.11.0"
+PNPM_VERSION = "12.21.0"
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
+Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+for = "/assets/*"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"

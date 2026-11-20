@@ -1,9 +1,9 @@
-# cjslash
+# @cjslash/core
 
 通过仓颉 SDK 的 LSP 分析代码示例，生成兼容 `twoslash-protocol` 的节点。
 
 ```ts
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({
   sdkPath: '/path/to/cangjie',

@@ -184,6 +184,9 @@ importers:
       '@changesets/cli':
         specifier: ^3.0.3
         version: 3.0.3
+      '@cjslash/core':
+        specifier: workspace:*
+        version: link:packages/cjslash
       '@cjslash/shiki':
         specifier: workspace:*
         version: link:packages/cjslash-shiki
@@ -223,9 +226,6 @@ importers:
       '@vueuse/core':
         specifier: ^15.0.0
         version: 15.0.0(vue@3.5.45(typescript@6.0.3))
-      cjslash:
-        specifier: workspace:*
-        version: link:packages/cjslash
       commitizen:
         specifier: ^4.3.2
         version: 4.3.2(@types/node@24.19.2)(typescript@6.0.3)
@@ -311,15 +311,15 @@ importers:
 
   packages/cjslash-shiki:
     dependencies:
+      '@cjslash/core':
+        specifier: workspace:*
+        version: link:../cjslash
       '@cjslash/protocol':
         specifier: workspace:*
         version: link:../cjslash-protocol
       '@shikijs/twoslash':
         specifier: ^4.6.0
         version: 4.6.0(supports-color@7.2.0)(typescript@6.0.3)
-      cjslash:
-        specifier: workspace:*
-        version: link:../cjslash
     devDependencies:
       shiki:
         specifier: ^4.6.0
@@ -327,6 +327,9 @@ importers:
 
   packages/cjslash-vitepress:
     dependencies:
+      '@cjslash/core':
+        specifier: workspace:*
+        version: link:../cjslash
       '@cjslash/protocol':
         specifier: workspace:*
         version: link:../cjslash-protocol
@@ -336,9 +339,6 @@ importers:
       '@shikijs/vitepress-twoslash':
         specifier: ^4.6.0
         version: 4.6.0(supports-color@7.2.0)(typescript@6.0.3)
-      cjslash:
-        specifier: workspace:*
-        version: link:../cjslash
       markdown-it:
         specifier: ^15.0.0
         version: 15.0.3

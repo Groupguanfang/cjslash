@@ -1,10 +1,10 @@
+import type { Cjslash, CjslashExecuteOptions } from '@cjslash/core'
 import type { CjslashResult } from '@cjslash/protocol'
-import type { Cjslash, CjslashExecuteOptions } from 'cjslash'
 import type { Plugin } from 'vitepress'
 import type { CjslashVitePressTransformer, VitePluginCjslashOptions, VitePressPluginCjslashOptions } from './types'
+import { createCjslasher } from '@cjslash/core'
 import { cangjieLanguage, ShikiTwoslashError } from '@cjslash/shiki'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
-import { createCjslasher } from 'cjslash'
 import MarkdownIt from 'markdown-it'
 import { createMarkdownRenderer, loadEnv } from 'vitepress'
 

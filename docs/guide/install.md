@@ -33,7 +33,7 @@ Windows 下对应的可执行文件使用 `.exe` 扩展名。文档示例使用 
 ## 安装核心包
 
 ```bash
-pnpm add -D cjslash
+pnpm add -D @cjslash/core
 ```
 
 核心 API 通过 `sdkPath` 显式指定 SDK。读取 `CJSLASH_SDK_PATH` 和 `CANGJIE_HOME` 的便利行为属于 VitePress 插件。
@@ -41,7 +41,7 @@ pnpm add -D cjslash
 ## 创建分析器
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({
   sdkPath: '/path/to/cangjie',
@@ -63,7 +63,7 @@ console.log(result.queries[0]?.text)
 `await using` 在离开作用域时调用 `[Symbol.asyncDispose]()`。如果所在环境不能使用该语法，可以显式释放：
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 const cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 

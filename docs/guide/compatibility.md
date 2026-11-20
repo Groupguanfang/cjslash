@@ -11,7 +11,7 @@ Cjslash 保留 Twoslash 适合仓颉的注释语法与数据形状，使用仓�
 | Twoslash 生态 | Cjslash 生态 | 职责 |
 | --- | --- | --- |
 | `twoslash-protocol` | `@cjslash/protocol` | 节点、位置、结果协议 |
-| `twoslash` | `cjslash` | 分析源码并返回结构化结果 |
+| `twoslash` | `@cjslash/core` | 分析源码并返回结构化结果 |
 | `@shikijs/twoslash` | `@cjslash/shiki` | 将分析结果渲染为高亮 HTML |
 | `@shikijs/vitepress-twoslash` | `@cjslash/vitepress` | 接入 VitePress 与悬浮层客户端 |
 
@@ -20,7 +20,7 @@ Cjslash 保留 Twoslash 适合仓颉的注释语法与数据形状，使用仓�
 ## 分析器 API
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const result = await cjslasher.analyze('main() {}', 'cj')

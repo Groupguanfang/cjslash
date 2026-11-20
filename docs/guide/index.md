@@ -59,7 +59,7 @@ main() {
 | --- | --- | --- |
 | 在 VitePress 文档中使用交互代码块 | `@cjslash/vitepress` | [`vitePluginCjslash()`](./vitepress) |
 | 在自定义渲染流程中生成高亮 HTML | `@cjslash/shiki` | [`transformerCjslash()`](./highlight) |
-| 分析源码，自己处理结果 | `cjslash` | [`createCjslasher()`](./install) |
+| 分析源码，自己处理结果 | `@cjslash/core` | [`createCjslasher()`](./install) |
 | 使用节点、位置和结果类型 | `@cjslash/protocol` | [协议与结果](../refs/result) |
 
 VitePress 用户可以直接从 [VitePress 集成](./vitepress)开始，只需在 Vite 配置中调用 `vitePluginCjslash()`。

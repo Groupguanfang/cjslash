@@ -6,11 +6,11 @@ const directory = Utils.dirname(URI.parse(import.meta.url))
 export default defineConfig({
   resolve: {
     alias: {
+      '@cjslash/core': Utils.resolvePath(directory, './packages/cjslash/src/index.ts').fsPath,
       '@cjslash/protocol': Utils.resolvePath(directory, './packages/cjslash-protocol/src/index.ts').fsPath,
       '@cjslash/shiki': Utils.resolvePath(directory, './packages/cjslash-shiki/src/index.ts').fsPath,
       '@cjslash/vitepress/client': Utils.resolvePath(directory, './packages/cjslash-vitepress/src/client.ts').fsPath,
       '@cjslash/vitepress': Utils.resolvePath(directory, './packages/cjslash-vitepress/src/index.ts').fsPath,
-      'cjslash': Utils.resolvePath(directory, './packages/cjslash/src/index.ts').fsPath,
     },
   },
 
@@ -113,6 +113,11 @@ export default defineConfig({
       'docs:preview': {
         cache: false,
         command: 'vitepress preview docs',
+      },
+      'docs:deploy': {
+        cache: false,
+        command: 'mkdir -p .netlify/cli && cd .netlify/cli && npm --prefix . exec --yes --prefer-offline --package=netlify-cli@27.20.0 -- netlify deploy --cwd ../.. --dir docs/.vitepress/dist --no-build --prod',
+        dependsOn: ['docs:build'],
       },
       'test': {
         cache: false,

@@ -1,7 +1,7 @@
-import type { Cjslash } from 'cjslash'
+import type { Cjslash } from '@cjslash/core'
 import type { Highlighter } from 'shiki'
 import process from 'node:process'
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 import { createHighlighter } from 'shiki'
 import { cangjieLanguage, transformerCjslash } from '../src/index'
 

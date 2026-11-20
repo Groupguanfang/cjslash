@@ -1,6 +1,6 @@
+import type { Cjslash, CjslashExecuteOptions } from '@cjslash/core'
 import type { CjslashResult } from '@cjslash/protocol'
 import type { RendererRichOptions, TransformerTwoslashOptions } from '@shikijs/twoslash/core'
-import type { Cjslash, CjslashExecuteOptions } from 'cjslash'
 import type { ShikiTransformer } from 'shiki'
 
 /**

@@ -11,7 +11,7 @@ Cjslash keeps the Twoslash annotations and data shapes that fit Cangjie, while u
 | Twoslash ecosystem | Cjslash ecosystem | Responsibility |
 | --- | --- | --- |
 | `twoslash-protocol` | `@cjslash/protocol` | Nodes, positions, and result protocol |
-| `twoslash` | `cjslash` | Source analysis and structured results |
+| `twoslash` | `@cjslash/core` | Source analysis and structured results |
 | `@shikijs/twoslash` | `@cjslash/shiki` | Render analysis results as highlighted HTML |
 | `@shikijs/vitepress-twoslash` | `@cjslash/vitepress` | VitePress integration and popup client |
 
@@ -20,7 +20,7 @@ Applicable upstream node types, renderer interfaces, and utilities are re-export
 ## Analyzer API
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const result = await cjslasher.analyze('main() {}', 'cj')

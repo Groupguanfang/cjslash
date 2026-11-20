@@ -7,10 +7,10 @@ description: Cjslash 分析器、错误类型，以及 Shiki 和 VitePress 的�
 
 ## `createCjslasher(options)`
 
-从 `cjslash` 导出，接收 [`CjslashOptions`](./options#analyzer-options)，返回 `Promise<Cjslash>`：
+从 `@cjslash/core` 导出，接收 [`CjslashOptions`](./options#analyzer-options)，返回 `Promise<Cjslash>`：
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const result = await cjslasher.analyze('main() {}')
@@ -43,7 +43,7 @@ const result = await cjslasher.analyze('main() {}')
 单次执行选项接受 `AbortSignal`：
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const abortController = new AbortController()
@@ -61,10 +61,10 @@ await pending.catch((error: unknown): void => {
 
 ## `CjslashError` {#errors}
 
-从 `cjslash` 导出，继承 `Error`，提供稳定的 `code`、可选 `cause` 和可选 `diagnostics`。非预期诊断附带的节点使用**原始输入坐标**，便于定位源文件。
+从 `@cjslash/core` 导出，继承 `Error`，提供稳定的 `code`、可选 `cause` 和可选 `diagnostics`。非预期诊断附带的节点使用**原始输入坐标**，便于定位源文件。
 
 ```ts twoslash
-import { CjslashError, createCjslasher } from 'cjslash'
+import { CjslashError, createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 

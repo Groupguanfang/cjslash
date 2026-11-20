@@ -1,6 +1,6 @@
+import type { Cjslash, CjslashExecuteOptions, CjslashOptions } from '@cjslash/core'
 import type { CjslashShikiTransformer } from '@cjslash/shiki'
 import type { VitePressPluginTwoslashOptions } from '@shikijs/vitepress-twoslash'
-import type { Cjslash, CjslashExecuteOptions, CjslashOptions } from 'cjslash'
 
 /**
  * Upstream VitePress twoslash options with an asynchronous Cangjie analyzer.

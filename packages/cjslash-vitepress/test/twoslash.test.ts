@@ -1,4 +1,4 @@
-import type { Cjslash } from 'cjslash'
+import type { Cjslash } from '@cjslash/core'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import { createMarkdownRenderer, disposeMdItInstance } from 'vitepress'
 import { URI, Utils } from 'vscode-uri'

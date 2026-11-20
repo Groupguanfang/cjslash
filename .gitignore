@@ -6,6 +6,7 @@ coverage
 .vitest
 .pnpm-store
 .vite
+.netlify
 **/.vitepress/cache/
 **/.vitepress/dist/
 .cjslash

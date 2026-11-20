@@ -1,9 +1,17 @@
 {
   "name": "@cjslash/protocol",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Shared protocol types for Cangjie code analysis, compatible with Twoslash",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Groupguanfang/cjslash.git",
+    "directory": "packages/cjslash-protocol"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": {

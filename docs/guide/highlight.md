@@ -4,12 +4,12 @@ description: 将异步仓颉分析结果接入 Shiki，生成类型感知的高�
 
 # Shiki 语法高亮
 
-`@cjslash/shiki` 把 `cjslash` 的分析结果接入 Shiki。节点拆分、位置映射和 HTML 渲染复用 `@shikijs/twoslash`，使用相同的 `twoslash-*` CSS 类。
+`@cjslash/shiki` 把 `@cjslash/core` 的分析结果接入 Shiki。节点拆分、位置映射和 HTML 渲染复用 `@shikijs/twoslash`，使用相同的 `twoslash-*` CSS 类。
 
 ## 安装
 
 ```bash
-pnpm add -D cjslash @cjslash/shiki shiki @shikijs/twoslash
+pnpm add -D @cjslash/core @cjslash/shiki shiki @shikijs/twoslash
 ```
 
 `@shikijs/twoslash` 在这里用于直接导入展示样式；高亮器使用 `@cjslash/shiki` 导出的仓颉语法。
@@ -17,8 +17,8 @@ pnpm add -D cjslash @cjslash/shiki shiki @shikijs/twoslash
 ## 先分析，再高亮
 
 ```ts twoslash
+import { createCjslasher } from '@cjslash/core'
 import { cangjieLanguage, transformerCjslash } from '@cjslash/shiki'
-import { createCjslasher } from 'cjslash'
 import { createHighlighter } from 'shiki'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
@@ -70,8 +70,8 @@ import '@shikijs/twoslash/style-rich.css'
 Shiki 集成默认转换 `cj`，同时支持 `cangjie`、`Cangjie` 别名，默认不要求 `cjslash` 元信息。设置 `explicitTrigger: true` 后，只转换元信息包含 `cjslash` 的代码块：
 
 ```ts twoslash
+import { createCjslasher } from '@cjslash/core'
 import { transformerCjslash } from '@cjslash/shiki'
-import { createCjslasher } from 'cjslash'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const transformer = transformerCjslash({
@@ -87,8 +87,8 @@ const transformer = transformerCjslash({
 `rendererRich` 使用上游 `RendererRichOptions`，例如隐藏 SDK 返回的文档正文：
 
 ```ts twoslash
+import { createCjslasher } from '@cjslash/core'
 import { transformerCjslash } from '@cjslash/shiki'
-import { createCjslasher } from 'cjslash'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const transformer = transformerCjslash({

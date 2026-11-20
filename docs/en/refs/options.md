@@ -28,7 +28,7 @@ Use `workspaceRoot` to choose the parent directory for generated projects. Relat
 `cjpmToml` accepts a serializable JavaScript object. It is merged with the defaults, then serialized with `confbox`'s `stringifyTOML` and written to the temporary project's `cjpm.toml`:
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({
   sdkPath: '/path/to/cangjie',
@@ -45,7 +45,7 @@ await using cjslasher = await createCjslasher({
 
 The generated package version defaults to `0.1.0`, and `cjc-version` comes from the SDK. `package.name` always follows the root module from the source's package declaration. `package.src-dir` defaults to `src` and can be overridden with a relative directory inside the project; absolute paths and `..` segments are rejected.
 
-`CjpmToml`, `CjpmTomlSection`, and `CjpmTomlValue` are exported from `cjslash` for typing configuration objects. TOML strings are not accepted. Invalid object structures or serialization failures throw `INVALID_CJPM_TOML`.
+`CjpmToml`, `CjpmTomlSection`, and `CjpmTomlValue` are exported from `@cjslash/core` for typing configuration objects. TOML strings are not accepted. Invalid object structures or serialization failures throw `INVALID_CJPM_TOML`.
 
 Extra configuration does not turn other Markdown blocks into files in this project. Use [`@filename`](./notations#files) for multiple files in one block; separate blocks still use isolated projects.
 
@@ -93,7 +93,7 @@ Positions use UTF-16 code units across the complete original input. `filename` i
 For example, disable automatic hovers by default and restore them for one analysis:
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({
   sdkPath: '/path/to/cangjie',

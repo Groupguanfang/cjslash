@@ -1,9 +1,17 @@
 {
   "name": "@cjslash/vitepress",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Cangjie analysis for VitePress",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Groupguanfang/cjslash.git",
+    "directory": "packages/cjslash-vitepress"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": {
@@ -35,10 +43,10 @@
     "vue": "^3.5.0"
   },
   "dependencies": {
+    "@cjslash/core": "workspace:*",
     "@cjslash/protocol": "workspace:*",
     "@cjslash/shiki": "workspace:*",
     "@shikijs/vitepress-twoslash": "^4.6.0",
-    "cjslash": "workspace:*",
     "markdown-it": "^15.0.0"
   },
   "devDependencies": {

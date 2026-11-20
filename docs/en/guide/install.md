@@ -33,7 +33,7 @@ On Windows, the executable files have an `.exe` extension. The documentation exa
 ## Install the core package
 
 ```bash
-pnpm add -D cjslash
+pnpm add -D @cjslash/core
 ```
 
 The core API requires an explicit `sdkPath`. Reading `CJSLASH_SDK_PATH` and `CANGJIE_HOME` automatically is a convenience provided by the VitePress plugin.
@@ -41,7 +41,7 @@ The core API requires an explicit `sdkPath`. Reading `CJSLASH_SDK_PATH` and `CAN
 ## Create an analyzer
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({
   sdkPath: '/path/to/cangjie',
@@ -63,7 +63,7 @@ console.log(result.queries[0]?.text)
 `await using` calls `[Symbol.asyncDispose]()` when its scope exits. If you cannot use that syntax, dispose explicitly:
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 const cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 

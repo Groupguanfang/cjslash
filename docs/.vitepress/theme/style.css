@@ -78,11 +78,6 @@
   --vp-code-tab-active-text-color: #f8f8f2;
   --vp-code-tab-bg: #272822;
 
-  --twoslash-popup-bg: #1d1e19;
-  --twoslash-popup-color: var(--vp-code-block-color);
-  --twoslash-docs-color: var(--vp-code-block-color);
-  --twoslash-border-color: rgba(45, 232, 159, 0.22);
-
   --vp-button-alt-border: var(--vp-c-divider);
   --vp-button-alt-text: var(--vp-c-text-1);
   --vp-button-alt-bg: transparent;
@@ -92,6 +87,13 @@
   --vp-button-alt-active-border: var(--vp-c-brand-1);
   --vp-button-alt-active-text: var(--vp-c-text-1);
   --vp-button-alt-active-bg: var(--vp-c-brand-soft);
+}
+
+html:root {
+  --twoslash-popup-bg: #1d1e19;
+  --twoslash-popup-color: var(--vp-code-block-color);
+  --twoslash-docs-color: var(--vp-code-block-color);
+  --twoslash-border-color: rgba(45, 232, 159, 0.22);
 }
 
 .VPNav,

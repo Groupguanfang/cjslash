@@ -1,4 +1,4 @@
-import type { Cjslash } from 'cjslash'
+import type { Cjslash } from '@cjslash/core'
 import type { Highlighter } from 'shiki'
 import type { VitePressPluginCjslashOptions } from '../src/types'
 import { rendererFloatingVue as upstreamRendererFloatingVue } from '@shikijs/vitepress-twoslash'

@@ -25,7 +25,7 @@ description: CjslashResult 的节点、分类视图、元数据，以及 UTF-16 
 `nodes` 是唯一节点数据源，其余分类视图每次读取时从 `nodes` 派生。
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const result = await cjslasher.analyze('let answer = 42\n//  ^?\nmain() { println(answer) }\n')

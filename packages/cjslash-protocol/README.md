@@ -67,4 +67,4 @@
 
 上游 `TwoslashGenericFunction` 返回同步结果，因此此包不重导出该类型。具体分析函数可以返回包含更多仓颉信息的 `Promise<CjslashResult>`。
 
-SDK 路径、LSP 进程、取消信号和 `[Symbol.asyncDispose]` 属于 `cjslash` 分析核心的职责。
+SDK 路径、LSP 进程、取消信号和 `[Symbol.asyncDispose]` 属于 `@cjslash/core` 分析核心的职责。

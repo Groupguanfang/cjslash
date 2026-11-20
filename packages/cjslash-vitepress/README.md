@@ -1,6 +1,6 @@
 # @cjslash/vitepress
 
-在 VitePress 中展示仓颉代码的类型悬浮提示、查询、补全和诊断。渲染、FloatingVue 客户端、Vue 转义及样式复用 `@shikijs/vitepress-twoslash`；仓颉分析通过 `cjslash` 的异步 SDK 会话完成。
+在 VitePress 中展示仓颉代码的类型悬浮提示、查询、补全和诊断。渲染、FloatingVue 客户端、Vue 转义及样式复用 `@shikijs/vitepress-twoslash`；仓颉分析通过 `@cjslash/core` 的异步 SDK 会话完成。
 
 ## 安装与配置
 

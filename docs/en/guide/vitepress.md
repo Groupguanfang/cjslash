@@ -143,10 +143,10 @@ Configure TypeScript through `twoslashOptions` and Cangjie through `cjslashOptio
 
 ## Styles and themes {#styling}
 
-Shared styles load before the site theme. Customize the popup in your own `.vitepress/theme/style.css`:
+Customize the popup in your own `.vitepress/theme/style.css`. Use `html:root` so the site variables take precedence over the shared `:root` defaults even when production CSS is merged in a different order:
 
 ```css
-:root {
+html:root {
   --twoslash-popup-bg: #1d1e19;
   --twoslash-popup-color: #f8f8f2;
   --twoslash-border-color: rgba(45, 232, 159, 0.22);
@@ -160,14 +160,14 @@ Match the popup background and text to your code theme. This documentation uses 
 To manage the analyzer lifecycle yourself, pass an existing instance's `analyze` method:
 
 ```ts twoslash
+import { createCjslasher } from '@cjslash/core'
 import { vitePluginCjslash } from '@cjslash/vitepress'
-import { createCjslasher } from 'cjslash'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const plugin = vitePluginCjslash({ cjslasher: cjslasher.analyze })
 ```
 
-Keep this scope alive for the complete VitePress build or development server lifecycle. The plugin does not dispose a borrowed analyzer. Install `cjslash` as a direct dependency if your application imports it.
+Keep this scope alive for the complete VitePress build or development server lifecycle. The plugin does not dispose a borrowed analyzer. Install `@cjslash/core` as a direct dependency if your application imports it.
 
 ## Preparation boundaries {#preparation}
 

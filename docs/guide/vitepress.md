@@ -143,10 +143,10 @@ main() { println(message) }
 
 ## 样式与主题 {#styling}
 
-共用样式在站点主题之前加载，可以在自己的 `.vitepress/theme/style.css` 中调整悬浮层：
+可以在自己的 `.vitepress/theme/style.css` 中调整悬浮层。使用 `html:root`，让站点变量优先于共用样式中的 `:root` 默认值，避免生产构建合并 CSS 时的顺序变化影响覆盖：
 
 ```css
-:root {
+html:root {
   --twoslash-popup-bg: #1d1e19;
   --twoslash-popup-color: #f8f8f2;
   --twoslash-border-color: rgba(45, 232, 159, 0.22);
@@ -160,14 +160,14 @@ main() { println(message) }
 需要管理分析器生命周期时，传入现有实例的 `analyze` 方法：
 
 ```ts twoslash
+import { createCjslasher } from '@cjslash/core'
 import { vitePluginCjslash } from '@cjslash/vitepress'
-import { createCjslasher } from 'cjslash'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const plugin = vitePluginCjslash({ cjslasher: cjslasher.analyze })
 ```
 
-应让该作用域覆盖整个 VitePress 构建或开发服务器生命周期。插件不会释放借用的分析器。若应用需要直接导入 `cjslash`，还应将它安装为直接依赖。
+应让该作用域覆盖整个 VitePress 构建或开发服务器生命周期。插件不会释放借用的分析器。若应用需要直接导入 `@cjslash/core`，还应将它安装为直接依赖。
 
 ## 准备阶段的边界 {#preparation}
 

@@ -25,7 +25,7 @@ description: CjslashResult nodes, derived views, metadata, and UTF-16 coordinate
 `nodes` is the single source of node data. The categorized getters derive their values from `nodes` each time they are read.
 
 ```ts twoslash
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const result = await cjslasher.analyze('let answer = 42\n//  ^?\nmain() { println(answer) }\n')

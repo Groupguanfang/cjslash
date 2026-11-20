@@ -1,9 +1,17 @@
 {
   "name": "@cjslash/shiki",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Cangjie analysis and syntax highlighting for Shiki",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Groupguanfang/cjslash.git",
+    "directory": "packages/cjslash-shiki"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": {
@@ -23,9 +31,9 @@
     "shiki": "^4.6.0"
   },
   "dependencies": {
+    "@cjslash/core": "workspace:*",
     "@cjslash/protocol": "workspace:*",
-    "@shikijs/twoslash": "^4.6.0",
-    "cjslash": "workspace:*"
+    "@shikijs/twoslash": "^4.6.0"
   },
   "devDependencies": {
     "shiki": "^4.6.0"

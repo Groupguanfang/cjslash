@@ -1,4 +1,4 @@
-import type { Cjslash } from 'cjslash'
+import type { Cjslash } from '@cjslash/core'
 import { transformerCjslash } from '../src/index'
 import { createResult } from './helpers'
 

@@ -1,12 +1,12 @@
-import type { Cjslash } from 'cjslash'
+import type { Cjslash } from '@cjslash/core'
 import type { MarkdownOptions, Plugin, SiteConfig } from 'vitepress'
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 import { createMarkdownRenderer, disposeMdItInstance, resolveConfig } from 'vitepress'
 import { URI, Utils } from 'vscode-uri'
 import { cangjieLanguage, vitePluginCjslash } from '../src/index'
 import { createResult } from './helpers'
 
-vi.mock('cjslash', (): object => ({
+vi.mock('@cjslash/core', (): object => ({
   createCjslasher: vi.fn(),
 }))
 

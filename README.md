@@ -1,4 +1,4 @@
-<p align="center">
+<p align="left">
   <img src="./docs/public/logo.svg" alt="Cjslash logo" width="128" height="128" />
 </p>
 
@@ -27,7 +27,7 @@ Analysis runs asynchronously. Each example gets its own project and LSP session,
 
 | Package | Purpose |
 | --- | --- |
-| [`cjslash`](packages/cjslash) | SDK-backed analysis and structured results |
+| [`@cjslash/core`](packages/cjslash) | SDK-backed analysis and structured results |
 | [`@cjslash/protocol`](packages/cjslash-protocol) | Shared types, reusing compatible Twoslash shapes |
 | [`@cjslash/shiki`](packages/cjslash-shiki) | Cangjie grammar and Shiki transformer |
 | [`@cjslash/vitepress`](packages/cjslash-vitepress) | VitePress plugin, popup client, and styles |
@@ -76,7 +76,7 @@ See the [VitePress guide](docs/en/guide/vitepress.md) for configuration and coex
 ## Core API
 
 ```ts
-import { createCjslasher } from 'cjslash'
+import { createCjslasher } from '@cjslash/core'
 
 await using cjslasher = await createCjslasher({
   sdkPath: '/path/to/cangjie',

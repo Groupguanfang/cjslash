@@ -4,11 +4,11 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
+      "@cjslash/core": ["./packages/cjslash/src/index.ts"],
       "@cjslash/protocol": ["./packages/cjslash-protocol/src/index.ts"],
       "@cjslash/shiki": ["./packages/cjslash-shiki/src/index.ts"],
       "@cjslash/vitepress": ["./packages/cjslash-vitepress/src/index.ts"],
-      "@cjslash/vitepress/client": ["./packages/cjslash-vitepress/src/client.ts"],
-      "cjslash": ["./packages/cjslash/src/index.ts"]
+      "@cjslash/vitepress/client": ["./packages/cjslash-vitepress/src/client.ts"]
     },
     "resolveJsonModule": true,
     "types": ["vite-plus/test/globals"],

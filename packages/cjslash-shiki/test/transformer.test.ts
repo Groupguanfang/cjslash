@@ -1,4 +1,4 @@
-import type { Cjslash, CjslashExecuteOptions } from 'cjslash'
+import type { Cjslash, CjslashExecuteOptions } from '@cjslash/core'
 import type { Highlighter } from 'shiki'
 import { rendererClassic as upstreamRendererClassic, rendererRich as upstreamRendererRich, ShikiTwoslashError as UpstreamShikiTwoslashError } from '@shikijs/twoslash/core'
 import { createHighlighter } from 'shiki'

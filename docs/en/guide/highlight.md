@@ -4,12 +4,12 @@ description: Prepare asynchronous Cangjie analysis results and render type-aware
 
 # Shiki highlighting
 
-`@cjslash/shiki` connects `cjslash` analysis results to Shiki. Node splitting, position mapping, and HTML rendering reuse `@shikijs/twoslash` and its `twoslash-*` CSS classes.
+`@cjslash/shiki` connects `@cjslash/core` analysis results to Shiki. Node splitting, position mapping, and HTML rendering reuse `@shikijs/twoslash` and its `twoslash-*` CSS classes.
 
 ## Install
 
 ```bash
-pnpm add -D cjslash @cjslash/shiki shiki @shikijs/twoslash
+pnpm add -D @cjslash/core @cjslash/shiki shiki @shikijs/twoslash
 ```
 
 `@shikijs/twoslash` is included here for the stylesheet imported directly by your application. Use the Cangjie grammar exported by `@cjslash/shiki` in the highlighter.
@@ -17,8 +17,8 @@ pnpm add -D cjslash @cjslash/shiki shiki @shikijs/twoslash
 ## Analyze before highlighting
 
 ```ts twoslash
+import { createCjslasher } from '@cjslash/core'
 import { cangjieLanguage, transformerCjslash } from '@cjslash/shiki'
-import { createCjslasher } from 'cjslash'
 import { createHighlighter } from 'shiki'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
@@ -70,8 +70,8 @@ The caller owns the analyzer. The transformer does not dispose it.
 The Shiki integration processes `cj` by default, with `cangjie` and `Cangjie` aliases. It does not require `cjslash` metadata by default. Set `explicitTrigger: true` to require that metadata:
 
 ```ts twoslash
+import { createCjslasher } from '@cjslash/core'
 import { transformerCjslash } from '@cjslash/shiki'
-import { createCjslasher } from 'cjslash'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const transformer = transformerCjslash({
@@ -87,8 +87,8 @@ const transformer = transformerCjslash({
 `rendererRich` accepts upstream `RendererRichOptions`. For example, hide documentation returned by the SDK:
 
 ```ts twoslash
+import { createCjslasher } from '@cjslash/core'
 import { transformerCjslash } from '@cjslash/shiki'
-import { createCjslasher } from 'cjslash'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
 const transformer = transformerCjslash({

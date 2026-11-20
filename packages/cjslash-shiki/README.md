@@ -3,8 +3,8 @@
 使用仓颉 SDK 分析代码，并通过 Shiki 展示类型悬浮提示、显式查询、诊断、高亮和自定义标签。
 
 ```ts
+import { createCjslasher } from '@cjslash/core'
 import { cangjieLanguage, transformerCjslash } from '@cjslash/shiki'
-import { createCjslasher } from 'cjslash'
 import { createHighlighter } from 'shiki'
 
 await using cjslasher = await createCjslasher({ sdkPath: '/path/to/cangjie' })
@@ -53,7 +53,7 @@ finally {
 | `disableTriggers` | 默认 `['nocjslash', 'no-cjslash']` |
 | `filter`、`throws`、`onTwoslashError`、`onShikiError` | 沿用上游接口与同步渲染行为 |
 
-执行配置中的取消信号和回调保留原始引用。自定义标签通过 `cjslashOptions.customTags` 开启，例如 `['warn', 'error', 'log', 'annotate']`。分析能力和标记与 `cjslash` 一致，包含 `^|` 补全和 `@filename` 同模块多文件示例，直接使用上游渲染器；TypeScript 编译选项、上游同步 `twoslasher`、`typesCache` 和 `includesMap` 不属于此接口。
+执行配置中的取消信号和回调保留原始引用。自定义标签通过 `cjslashOptions.customTags` 开启，例如 `['warn', 'error', 'log', 'annotate']`。分析能力和标记与 `@cjslash/core` 一致，包含 `^|` 补全和 `@filename` 同模块多文件示例，直接使用上游渲染器；TypeScript 编译选项、上游同步 `twoslasher`、`typesCache` 和 `includesMap` 不属于此接口。
 
 默认富文本渲染器生成上游的 `twoslash-*` CSS 类，展示时可复用 `@shikijs/twoslash/style-rich.css`。在应用入口直接导入该样式时，将 `@shikijs/twoslash` 声明为应用的直接依赖：
 

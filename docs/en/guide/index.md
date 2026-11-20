@@ -59,7 +59,7 @@ Unexpected diagnostics fail analysis by default, helping authors catch mistakes.
 | --- | --- | --- |
 | Interactive code blocks in VitePress | `@cjslash/vitepress` | [`vitePluginCjslash()`](./vitepress) |
 | Highlighted HTML in a custom rendering pipeline | `@cjslash/shiki` | [`transformerCjslash()`](./highlight) |
-| Analyze source and handle the results yourself | `cjslash` | [`createCjslasher()`](./install) |
+| Analyze source and handle the results yourself | `@cjslash/core` | [`createCjslasher()`](./install) |
 | Use node, position, and result types | `@cjslash/protocol` | [Protocol and results](../refs/result) |
 
 VitePress users can start with the [VitePress integration](./vitepress) and add `vitePluginCjslash()` to their Vite configuration.
