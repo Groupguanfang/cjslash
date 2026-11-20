@@ -11,6 +11,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    CjslashDiagnostics: typeof import('./components/CjslashDiagnostics.vue')['default']
     CjslashRenderTabs: typeof import('./components/CjslashRenderTabs.vue')['default']
     Homepage: typeof import('./components/home/Homepage.vue')['default']
   }

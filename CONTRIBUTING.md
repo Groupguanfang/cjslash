@@ -148,6 +148,8 @@ Pull requests that contain changesets receive a release pull request from the Re
 
 The deployment job in the CI workflow publishes production documentation from `main` with the Netlify CLI after every check passes. It deploys the documentation artifact built with the Cangjie SDK. Connect a Netlify site to this repository, set the `NETLIFY_AUTH_TOKEN` Actions secret and `NETLIFY_SITE_ID` Actions variable, and keep the repository's Netlify build settings aligned with `netlify.toml`. If you use Netlify's Git integration instead of the deployment job, the connected site builds with the SDK available on the Netlify image only; add an SDK in that environment to keep interactive examples enabled.
 
+Pull requests from branches in this repository deploy the same SDK-built artifact to a Netlify preview after checks pass. The preview updates on each push to the pull request branch. Find its URL in the pull request's deployment section or the deployment job summary.
+
 For local deployment, run `CJSLASH_SDK_PATH=/path/to/cangjie vp run docs:deploy`. The task builds the documentation with the SDK and uploads the result directly to Netlify production. It runs a pinned Netlify CLI through `npm exec` from the independent `.netlify/cli` tool directory and explicitly sets the working directory to the repository root, avoiding the CLI's workspace package selection; workspace dependencies continue to use pnpm. On the first run, sign in and select or create the documentation site when the CLI prompts. The CLI stores the site link in the ignored `.netlify/` directory, so subsequent runs need only the same command. Local deployment does not require GitHub Actions secrets.
 
 ## Dependency updates
@@ -217,6 +219,8 @@ GitHub Actions 会在每次拉取请求和推送到 `main` 时运行 ESLint、�
 包含 changeset 的拉取请求会收到 Release 工作流创建的发布拉取请求。合并后，工作流会更新受影响包的版本并发布到 npm；发布前会构建全部包。发布会通过 GitHub OIDC 使用 npm Trusted Publishing，由 npm 生成 provenance，仓库中不保存长期 npm token。
 
 CI 工作流中的部署任务会在全部检查通过后，通过 Netlify CLI 将使用仓颉 SDK 构建的文档产物发布到 `main` 的生产环境。需要先在 Netlify 创建站点并配置 `NETLIFY_AUTH_TOKEN` Actions secret 和 `NETLIFY_SITE_ID` Actions variable，同时让 Netlify 的构建设置与 `netlify.toml` 保持一致。若改用 Netlify Git 集成而不是部署任务，Netlify 镜像默认没有仓颉 SDK；需要在 Netlify 环境中安装 SDK 才能保留交互示例。
+
+从本仓库分支创建的 PR 会在全部检查通过后，将同一份 SDK 文档产物部署为 Netlify 预览。每次推送到 PR 分支都会更新预览；可在 PR 的部署区域或部署任务摘要中找到预览地址。
 
 本地部署时，运行 `CJSLASH_SDK_PATH=/path/to/cangjie vp run docs:deploy` 即可使用 SDK 构建文档并直接上传到 Netlify 生产环境。任务在独立的 `.netlify/cli` 工具目录中通过 `npm exec` 运行固定版本的 Netlify CLI，并显式将工作目录设置为仓库根目录，避免 CLI 要求选择工作区中的包；工作区依赖继续由 pnpm 管理。首次运行时按 CLI 提示登录并选择或创建文档站点。CLI 会把站点关联保存在已忽略的 `.netlify/` 目录，后续只需重复同一条命令。本地部署不需要 GitHub Actions secrets。
 
