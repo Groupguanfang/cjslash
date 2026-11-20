@@ -93,6 +93,7 @@ html:root {
   --twoslash-popup-bg: #1d1e19;
   --twoslash-popup-color: var(--vp-code-block-color);
   --twoslash-docs-color: var(--vp-code-block-color);
+  --twoslash-unmatched-color: var(--vp-code-block-color);
   --twoslash-border-color: rgba(45, 232, 159, 0.22);
 }
 
