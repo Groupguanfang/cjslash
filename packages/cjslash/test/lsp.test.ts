@@ -150,6 +150,20 @@ async function create(cjpmToml?: CjpmToml, code = ''): Promise<Awaited<ReturnTyp
   return session
 }
 
+/**
+ * Normalizes paths for cross-platform assertions.
+ *
+ * ---
+ *
+ * 为跨平台断言规范化路径。
+ */
+function normalizePathForComparison(value: string): string {
+  const normalized = path.normalize(value)
+  return process.platform === 'win32'
+    ? normalized.toLowerCase()
+    : normalized
+}
+
 beforeEach(() => {
   vi.resetAllMocks()
 })
@@ -174,7 +188,7 @@ describe('lsp initialization', () => {
     expect(fs.readFileSync(path.join(directory, 'cjpm.toml'), 'utf8')).toContain('src-dir = "src"')
     expect(fs.readFileSync(path.join(directory, 'cjpm.toml'), 'utf8')).toContain('name = "default"')
     expect(fs.readFileSync(URI.parse(transport.state.uri).fsPath, 'utf8')).toBe('\n')
-    expect(URI.parse(transport.state.uri).fsPath).toBe(path.join(directory, 'src/index.cj'))
+    expect(normalizePathForComparison(URI.parse(transport.state.uri).fsPath)).toBe(normalizePathForComparison(path.join(directory, 'src/index.cj')))
     expect(mocks.spawn).toHaveBeenCalledWith(sdk.serverPath, [
       'src',
       '--log-path',
@@ -234,7 +248,7 @@ describe('lsp initialization', () => {
     const first = await createLspSession(sdk, 1000, { workspaceRoot, files })
     sessions.push(first)
     const firstDirectory = URI.parse(firstTransport.state.rootUri).fsPath
-    expect(path.dirname(path.dirname(firstDirectory))).toBe(fs.realpathSync(workspaceRoot))
+    expect(normalizePathForComparison(path.dirname(path.dirname(firstDirectory)))).toBe(normalizePathForComparison(fs.realpathSync(workspaceRoot)))
     expect(fs.readFileSync(path.join(firstDirectory, 'src/models/index.cj'), 'utf8')).toContain('package example.models')
     const preservedFile = path.join(workspaceRoot, 'keep.txt')
     fs.writeFileSync(preservedFile, 'keep')
@@ -243,7 +257,7 @@ describe('lsp initialization', () => {
     const second = await createLspSession(sdk, 1000, { workspaceRoot, files })
     sessions.push(second)
     const secondDirectory = URI.parse(secondTransport.state.rootUri).fsPath
-    expect(path.dirname(path.dirname(secondDirectory))).toBe(fs.realpathSync(workspaceRoot))
+    expect(normalizePathForComparison(path.dirname(path.dirname(secondDirectory)))).toBe(normalizePathForComparison(fs.realpathSync(workspaceRoot)))
     expect(secondDirectory).not.toBe(firstDirectory)
 
     await first[Symbol.asyncDispose]()
@@ -288,7 +302,7 @@ describe('lsp initialization', () => {
     const transport = createTransport()
     await create(undefined, 'package example.models.user\nmain() {}')
     const directory = URI.parse(transport.state.rootUri).fsPath
-    expect(URI.parse(transport.state.uri).fsPath).toBe(path.join(directory, 'src/models/user/index.cj'))
+    expect(normalizePathForComparison(URI.parse(transport.state.uri).fsPath)).toBe(normalizePathForComparison(path.join(directory, 'src/models/user/index.cj')))
     expect(fs.readFileSync(URI.parse(transport.state.uri).fsPath, 'utf8')).toBe('package example.models.user\nmain() {}\n')
     expect(fs.readFileSync(path.join(directory, 'cjpm.toml'), 'utf8')).toContain('name = "example"')
   })
@@ -299,7 +313,7 @@ describe('lsp initialization', () => {
       package: { 'src-dir': 'examples/code', 'compile-option': '-O2' },
     }, 'package example.models\nmain() {}')
     const directory = URI.parse(transport.state.rootUri).fsPath
-    expect(URI.parse(transport.state.uri).fsPath).toBe(path.join(directory, 'examples/code/models/index.cj'))
+    expect(normalizePathForComparison(URI.parse(transport.state.uri).fsPath)).toBe(normalizePathForComparison(path.join(directory, 'examples/code/models/index.cj')))
     expect(mocks.spawn.mock.calls[0][1][0]).toBe('examples/code')
     expect((transport.connection.sendRequest.mock.calls[0][1] as InitializeParams).initializationOptions).toMatchObject({
       multiModuleOption: {
