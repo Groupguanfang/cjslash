@@ -140,6 +140,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build workspace packages
+        run: pnpm exec vp run build:vitepress
+
       - name: Run real-SDK integration tests
         run: pnpm exec vp run test:sdk
 
@@ -195,9 +198,15 @@ jobs:
       - unit-tests
       - sdk-tests
       - documentation
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: ${{ github.event_name == 'pull_request' && format('preview-pr-{0}', github.event.number) || 'production' }}
+      url: ${{ steps.netlify.outputs.url }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -229,10 +238,24 @@ jobs:
           fi
 
       - name: Deploy to Netlify
+        id: netlify
+        shell: bash
         run: |
-          mkdir -p .netlify/cli
-          cd .netlify/cli
-          npm --prefix . exec --yes --prefer-offline --package=netlify-cli@27.20.0 -- netlify deploy --cwd ../.. --dir docs/.vitepress/dist --site "$NETLIFY_SITE_ID" --no-build --prod --message "Deploy from ${GITHUB_SHA}"
+          set -euo pipefail
+          if [[ "$DEPLOY_CONTEXT" == "deploy-preview" ]]; then
+            deploy_flags=(--alias "deploy-preview-$PR_NUMBER" --message "Deploy preview from ${GITHUB_SHA}")
+          else
+            deploy_flags=(--prod --message "Deploy from ${GITHUB_SHA}")
+          fi
+          tool_root="$RUNNER_TEMP/netlify-cli"
+          mkdir -p "$tool_root"
+          cd "$tool_root"
+          npm exec --yes --prefer-offline --package=netlify-cli@27.20.0 -- netlify deploy --site "$NETLIFY_SITE_ID" --dir "$GITHUB_WORKSPACE/docs/.vitepress/dist" --no-build "${deploy_flags[@]}" --json > "$RUNNER_TEMP/netlify-deploy.json"
+          deployment_url="$(jq -er '.deploy_url // .url' "$RUNNER_TEMP/netlify-deploy.json")"
+          echo "url=$deployment_url" >> "$GITHUB_OUTPUT"
+          printf '### Netlify documentation deployment\n\n[View the deployed documentation](%s)\n' "$deployment_url" >> "$GITHUB_STEP_SUMMARY"
         env:
+          DEPLOY_CONTEXT: ${{ github.event_name == 'pull_request' && 'deploy-preview' || 'production' }}
+          PR_NUMBER: ${{ github.event.number }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ vars.NETLIFY_SITE_ID }}

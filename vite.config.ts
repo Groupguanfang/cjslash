@@ -110,6 +110,10 @@ export default defineConfig({
         command: 'vitepress build docs',
         dependsOn: ['build:vitepress'],
       },
+      'docs:diagnostics': {
+        cache: false,
+        command: 'node scripts/generate-diagnostics.ts',
+      },
       'docs:preview': {
         cache: false,
         command: 'vitepress preview docs',

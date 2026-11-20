@@ -42,14 +42,15 @@ main() { println(answer) }
 通过 `@errors` 声明示例允许出现的诊断编号，就可以在保留诊断校验的同时展示错误：
 
 ```cj cjslash
-// @errors: 731
+// @errors: 776
 main() {
-    let value: Int64 = "bad"
-    println(value)
+    let answer = 42
+    answer = 43
+    println(answer)
 }
 ```
 
-这里的 `731` 是仓颉 SDK 1.2.1 对该类型不匹配返回的编号。诊断文本和编号可能随 SDK 版本改变；编写反例时应以实际使用的 SDK 为准。
+`let` 声明的变量不可重新赋值。这里的 `776` 是仓颉 SDK 1.2.1 对 `answer = 43` 返回的诊断编号，对应 `cannot assign to immutable value`。诊断文本和编号可能随 SDK 版本改变；编写反例时应以实际使用的 SDK 为准。
 
 未声明的诊断默认使分析失败，帮助作者发现示例中的意外错误。完整规则见[注释标记](../refs/notations)。
 

@@ -42,14 +42,15 @@ Align `^` with the target symbol on the preceding line. The annotation is remove
 Use `@errors` to allow specific diagnostic codes while keeping validation enabled:
 
 ```cj cjslash
-// @errors: 731
+// @errors: 776
 main() {
-    let value: Int64 = "bad"
-    println(value)
+    let answer = 42
+    answer = 43
+    println(answer)
 }
 ```
 
-Here, `731` is the code returned for this type mismatch by Cangjie SDK 1.2.1. Messages and codes can change between SDK versions; use the values returned by your SDK when writing examples.
+A variable declared with `let` cannot be reassigned. Here, `776` is the diagnostic code returned by Cangjie SDK 1.2.1 for `answer = 43`, with the message `cannot assign to immutable value`. Messages and codes can change between SDK versions; use the values returned by your SDK when writing examples.
 
 Unexpected diagnostics fail analysis by default, helping authors catch mistakes. See [Notations](../refs/notations) for the complete rules.
 

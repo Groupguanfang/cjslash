@@ -133,6 +133,8 @@ main() {
 
 The list allows codes to occur; it does not require every listed code to occur. Numeric and string codes are supported. Actual codes depend on the SDK.
 
+The [diagnostic code reference](./diagnostics) lists codes, levels, and message templates for SDK 1.2.1.
+
 ### `@noErrors`
 
 `// @noErrors` or `// @noErrors: true` suppresses all diagnostics. `// @noErrors: 731` suppresses only the listed codes. Suppressed diagnostics are excluded from both the result and validation.

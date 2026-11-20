@@ -180,7 +180,7 @@ export async function createLspSession(sdk: CangjieSdk, timeout: number, options
   const workspaceRoot = path.resolve(options.workspaceRoot ?? os.tmpdir())
   if (options.workspaceRoot !== undefined) fs.mkdirSync(workspaceRoot, { recursive: true })
   const temporaryDirectory = fs.mkdtempSync(path.join(workspaceRoot, 'cjslash-'))
-  subscriptions.defer(() => fs.rmSync(temporaryDirectory, { recursive: true, force: true }))
+  subscriptions.defer(() => removePath(temporaryDirectory))
   const projectDirectory = path.join(temporaryDirectory, packageInfo.moduleName)
   fs.mkdirSync(projectDirectory)
   const directory = fs.realpathSync(projectDirectory)
@@ -488,4 +488,29 @@ async function abortable<Result>(promise: Promise<Result>, signal: AbortSignal):
   finally {
     signal.removeEventListener('abort', onAbort)
   }
+}
+
+/**
+ * Remove a file or directory recursively without using Node's rimraf implementation.
+ *
+ * Node 24 on Windows silently ignores paths containing non-ASCII characters in `fs.rmSync` and `fs.rm`.
+ * Recursing through `readdirSync`, `unlinkSync`, and `rmdirSync` keeps non-ASCII workspaces removable.
+ *
+ * ---
+ *
+ * 递归删除文件或目录，不使用 Node 的 rimraf 实现。
+ *
+ * Node 24 在 Windows 上会让 `fs.rmSync` 和 `fs.rm` 静默忽略包含非 ASCII 字符的路径。
+ * 通过 `readdirSync`、`unlinkSync` 和 `rmdirSync` 递归删除，可以正常清理非 ASCII 工作区。
+ */
+function removePath(target: string): void {
+  if (!fs.existsSync(target)) return
+  const stats = fs.lstatSync(target)
+  if (!stats.isDirectory() || stats.isSymbolicLink()) {
+    fs.unlinkSync(target)
+    return
+  }
+  for (const entry of fs.readdirSync(target))
+    removePath(path.join(target, entry))
+  fs.rmdirSync(target)
 }
