@@ -180,7 +180,18 @@ export async function createLspSession(sdk: CangjieSdk, timeout: number, options
   const workspaceRoot = path.resolve(options.workspaceRoot ?? os.tmpdir())
   if (options.workspaceRoot !== undefined) fs.mkdirSync(workspaceRoot, { recursive: true })
   const temporaryDirectory = fs.mkdtempSync(path.join(workspaceRoot, 'cjslash-'))
-  subscriptions.defer(() => fs.rmSync(temporaryDirectory, { recursive: true, force: true }))
+  subscriptions.defer(async () => {
+    for (let attempt = 0; attempt < 20; attempt++) {
+      fs.rmSync(temporaryDirectory, {
+        recursive: true,
+        force: true,
+        maxRetries: 10,
+        retryDelay: 50,
+      })
+      if (!fs.existsSync(temporaryDirectory)) return
+      await new Promise(resolve => setTimeout(resolve, 50))
+    }
+  })
   const projectDirectory = path.join(temporaryDirectory, packageInfo.moduleName)
   fs.mkdirSync(projectDirectory)
   const directory = fs.realpathSync(projectDirectory)

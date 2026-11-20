@@ -189,13 +189,18 @@ describe('lsp initialization', () => {
     expect(fs.readFileSync(path.join(directory, 'cjpm.toml'), 'utf8')).toContain('name = "default"')
     expect(fs.readFileSync(URI.parse(transport.state.uri).fsPath, 'utf8')).toBe('\n')
     expect(normalizePathForComparison(URI.parse(transport.state.uri).fsPath)).toBe(normalizePathForComparison(path.join(directory, 'src/index.cj')))
-    expect(mocks.spawn).toHaveBeenCalledWith(sdk.serverPath, [
+    expect(mocks.spawn).toHaveBeenCalledOnce()
+    const spawnCall = mocks.spawn.mock.calls[0]
+    expect(spawnCall[0]).toBe(sdk.serverPath)
+    expect(spawnCall[1]).toEqual([
       'src',
       '--log-path',
       path.join(directory, 'logs'),
       '--cache-path',
       path.join(directory, 'cache'),
-    ], { cwd: directory, env: sdk.env, stdio: 'pipe' })
+    ])
+    expect(normalizePathForComparison(spawnCall[2].cwd)).toBe(normalizePathForComparison(directory))
+    expect(spawnCall[2]).toMatchObject({ env: sdk.env, stdio: 'pipe' })
     const initialize = transport.connection.sendRequest.mock.calls[0][1] as InitializeParams
     expect(initialize.capabilities).toMatchObject({
       general: {
